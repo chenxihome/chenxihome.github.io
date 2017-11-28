@@ -77,12 +77,12 @@
 <p><strong> ==   Snowflake算法核心==</strong><br><img src="C:\Users\tukun\Desktop\snowflake-64bit.jpg" alt="snowflake-64bit.jpg"><br>说明如下：</p>
 <font color="#DC143C">1.1位标识，由于long基本类型在java中是带符号的，最高位是符号位，正数是0，负数是1，所以id一般是正数，最高位是0,暂时未用</font><br><font color="#DC143C">2.41位时间截，注意，41位时间截不是存储当前时间的时间截，而是存储时间截的差值（当前时间截 - 开始时间截 得到的值），41位的时间截，大致可以使用69年，T = (1L &lt;&lt; 41) / (1000L <em> 60 </em> 60 <em> 24 </em> 365) = 69.7年</font><br><font color="#DC143C">3.10位的数据机器位，可以部署在1024个节点</font><br><font color="#DC143C">4.12位序列，同一时间截，同一机器，可以生成4096个id</font>
 
-<p><strong><br>惺惺惜惺惺想 啧啧啧  ZZZZZZ<br>使用java实现:</strong></p>
+<p><strong><br>使用java实现:</strong>例子稍后补上</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/11/28/snowflake/" data-id="cjajcvqz90001z4mxzoos82d3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/11/28/snowflake/" data-id="cjajcylhp0001asmxzhihdmg2" class="article-share-link">Share</a>
       
       
     </footer>
@@ -127,7 +127,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/11/14/hello-world/" data-id="cjajcvqyx0000z4mxqu3gy56i" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/11/14/hello-world/" data-id="cjajcylh80000asmxh37yu1wy" class="article-share-link">Share</a>
       
       
     </footer>
