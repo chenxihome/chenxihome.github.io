@@ -73,54 +73,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>##分布式ID生成器(Twitter-Snowflake，64位自增ID算法详解)<br>    Twitter-Snowflake算法产生的背景相当简单，为了满足Twitter每秒上万条消息的请求，每条消息都必须分配一条唯一的id，这些id还需要一些大致的顺序（方便客户端排序），并且在分布式系统中不同机器产生的id必须不同。</p>
+        <h1 id="分布式ID生成器-Twitter-Snowflake，64位自增ID算法详解"><a href="#分布式ID生成器-Twitter-Snowflake，64位自增ID算法详解" class="headerlink" title="分布式ID生成器(Twitter-Snowflake，64位自增ID算法详解)"></a>分布式ID生成器(Twitter-Snowflake，64位自增ID算法详解)</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Twitter-Snowflake算法产生的背景相当简单，为了满足Twitter每秒上万条消息的请求，每条消息都必须分配一条唯一的id，这些id还需要一些大致的顺序（方便客户端排序），并且在分布式系统中不同机器产生的id必须不同。</span><br></pre></td></tr></table></figure>
 <p><strong> ==   Snowflake算法核心==</strong><br><img src="C:\Users\tukun\Desktop\snowflake-64bit.jpg" alt="snowflake-64bit.jpg"><br>说明如下：</p>
-<p><font color="#DC143C">1.1位标识，由于long基本类型在java中是带符号的，最高位是符号位，正数是0，负数是1，所以id一般是正数，最高位是0,暂时未用</font></p>
-<p><font color="#DC143C">2.41位时间截，注意，41位时间截不是存储当前时间的时间截，而是存储时间截的差值（当前时间截 - 开始时间截 得到的值），41位的时间截，大致可以使用69年，T = (1L &lt;&lt; 41) / (1000L <em> 60 </em> 60 <em> 24 </em> 365) = 69.7年</font></p>
-<p><font color="#DC143C">3.10位的数据机器位，可以部署在1024个节点</font></p>
-<p><font color="#DC143C">4.12位序列，同一时间截，同一机器，可以生成4096个id</font>++</p>
-<p><strong><br>使用java实现:</strong></p>
+<font color="#DC143C">1.1位标识，由于long基本类型在java中是带符号的，最高位是符号位，正数是0，负数是1，所以id一般是正数，最高位是0,暂时未用</font><br><font color="#DC143C">2.41位时间截，注意，41位时间截不是存储当前时间的时间截，而是存储时间截的差值（当前时间截 - 开始时间截 得到的值），41位的时间截，大致可以使用69年，T = (1L &lt;&lt; 41) / (1000L <em> 60 </em> 60 <em> 24 </em> 365) = 69.7年</font><br><font color="#DC143C">3.10位的数据机器位，可以部署在1024个节点</font><br><font color="#DC143C">4.12位序列，同一时间截，同一机器，可以生成4096个id</font>
+
+<p><strong><br>惺惺惜惺惺想 啧啧啧<br>使用java实现:</strong></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/11/28/snowflake/" data-id="cjajap8zn00004smx7j9urwhv" class="article-share-link">Partager</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-the-first-article" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/11/14/the-first-article/" class="article-date">
-  <time datetime="2017-11-14T08:30:16.000Z" itemprop="datePublished">2017-11-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/14/the-first-article/">the first article</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/11/14/the-first-article/" data-id="cjajap8zr00014smxuz0j5blf" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2017/11/28/snowflake/" data-id="cjajb90w300016kmxgqztky12" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -165,7 +127,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/11/14/hello-world/" data-id="cjajap8zv00024smxwlsgbgc4" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2017/11/14/hello-world/" data-id="cjajb90vs00006kmxx7no34k9" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -206,10 +168,6 @@
         
           <li>
             <a href="/2017/11/28/snowflake/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2017/11/14/the-first-article/">the first article</a>
           </li>
         
           <li>
