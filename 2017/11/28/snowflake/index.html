@@ -3,18 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Hexo</title>
+  <title>优秀分布式ID生成器(Twitter-Snowflake）算法详解与JAVA实现 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="优秀分布式ID生成器(Twitter-Snowflake）算法详解与JAVA实现++  Twitter-Snowflake算法产生的背景相当简单，为了满足Twitter每秒上万条消息的请求，每条消息都必须分配一条唯一的id，这些id还需要一些大致的顺序（方便客户端排序），并且在分布式系统中不同机器产生的id必须不同。++  ==   Snowflake算法核心==说明如下： 1.1位标识，由于lo">
+<meta name="keywords" content="分布式Id,高可用">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo">
+<meta property="og:title" content="优秀分布式ID生成器(Twitter-Snowflake）算法详解与JAVA实现">
 <meta property="og:url" content="http://yoursite.com/2017/11/28/snowflake/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="优秀分布式ID生成器(Twitter-Snowflake）算法详解与JAVA实现++  Twitter-Snowflake算法产生的背景相当简单，为了满足Twitter每秒上万条消息的请求，每条消息都必须分配一条唯一的id，这些id还需要一些大致的顺序（方便客户端排序），并且在分布式系统中不同机器产生的id必须不同。++  ==   Snowflake算法核心==说明如下： 1.1位标识，由于lo">
 <meta property="og:image" content="https://github.com/chenxihome/chenxihome.github.io/raw/master/img/snowflake-64bit.jpg">
-<meta property="og:updated_time" content="2017-11-29T10:44:52.395Z">
+<meta property="og:updated_time" content="2017-11-29T10:55:16.852Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="优秀分布式ID生成器(Twitter-Snowflake）算法详解与JAVA实现">
 <meta name="twitter:description" content="优秀分布式ID生成器(Twitter-Snowflake）算法详解与JAVA实现++  Twitter-Snowflake算法产生的背景相当简单，为了满足Twitter每秒上万条消息的请求，每条消息都必须分配一条唯一的id，这些id还需要一些大致的顺序（方便客户端排序），并且在分布式系统中不同机器产生的id必须不同。++  ==   Snowflake算法核心==说明如下： 1.1位标识，由于lo">
 <meta name="twitter:image" content="https://github.com/chenxihome/chenxihome.github.io/raw/master/img/snowflake-64bit.jpg">
   
@@ -56,7 +57,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Søk"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -71,9 +72,23 @@
   <time datetime="2017-11-28T07:22:27.879Z" itemprop="datePublished">2017-11-28</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/算法/">算法</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      优秀分布式ID生成器(Twitter-Snowflake）算法详解与JAVA实现
+    </h1>
+  
+
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
@@ -87,9 +102,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/11/28/snowflake/" data-id="cjakxd0zk0001zcmxds251jls" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2017/11/28/snowflake/" data-id="cjakxmz070000h8mxmkvywier" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/分布式Id/">分布式Id</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/高可用/">高可用</a></li></ul>
+
     </footer>
   </div>
   
@@ -98,7 +115,7 @@
   
   
     <a href="/2017/11/14/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Ouder</strong>
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">Hello World</div>
     </a>
   
@@ -112,16 +129,37 @@
           <aside id="sidebar">
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Kategorier</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a></li></ul>
+    </div>
+  </div>
 
-  
-    
 
-  
-    
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archieven</h3>
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式Id/">分布式Id</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/高可用/">高可用</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/分布式Id/" style="font-size: 10px;">分布式Id</a> <a href="/tags/高可用/" style="font-size: 10px;">高可用</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Arkiv</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li></ul>
     </div>
@@ -131,12 +169,12 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recente berichten</h3>
+    <h3 class="widget-title">Siste innlegg</h3>
     <div class="widget">
       <ul>
         
           <li>
-            <a href="/2017/11/28/snowflake/">(no title)</a>
+            <a href="/2017/11/28/snowflake/">优秀分布式ID生成器(Twitter-Snowflake）算法详解与JAVA实现</a>
           </li>
         
           <li>
