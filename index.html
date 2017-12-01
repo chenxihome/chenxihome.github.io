@@ -101,16 +101,22 @@
 <li>业务Id需要暴露给用户，但又不能被用户猜到所有编号</li>
 <li>业务编号需要体现业务信息，比如订单分类等</li>
 </ol>
-<p>本文将以“数据库水平拆分且主键需要作为外键使用” 为主要应用场景，来设计ID生成器<br>二、设计目标<br><img src="http://" alt=""><br>三、解决方案<br>3.1 常见方案一：UUID<br>UUID 是 通用唯一识别码（Universally Unique Identifier）的缩写，是一种软件建构的标准，亦为开放软件基金会组织在分布式计算环境领域的一部分</p>
+<p>本文将以“数据库水平拆分且主键需要作为外键使用” 为主要应用场景，来设计ID生成器<br><strong>二、设计目标</strong><br><img src="https://github.com/chenxihome/chenxihome.github.io/raw/master/img/snowflake-64bit.jpg" alt=""><br><strong>三、解决方案</strong><br>3.1 常见方案一：UUID<br>UUID 是 通用唯一识别码（Universally Unique Identifier）的缩写，是一种软件建构的标准，亦为开放软件基金会组织在分布式计算环境领域的一部分</p>
 <p>UUID是由一组32位数的16进制数字所构成，是故UUID理论上的总数为1632=2128，约等于3.4 x 1038。也就是说若每纳秒产生1兆个UUID，要花100亿年才会将所有UUID用完。</p>
 <p>UUID的标准型式包含32个16进制数字，以连字号分为五段，形式为8-4-4-4-12的32个字符。示例：<br>550e8400-e29b-41d4-a716-446655440000</p>
 <p>每秒产生10亿笔UUID<br>100年后只产生一次重复的机率是50%</p>
 <p>方案优点：<br>本地生成，没有网络消耗<br>可以任意水平扩展<br>生成效率高<br>生成节点不限<br>方案缺点：<br>128bit，占用空间大<br>无法做到趋势递增<br>索引效率差<br>3.2常见方案二：数据库自增列</p>
+<p>方案优点：<br>可以实现ID完全递增（almost）<br>部署简单，有DB就可以<br>方案缺点：<br>生成效率差，取决于数据库性能指标<br>依赖于数据库，如果DB发生故障，在做主从切换的时候可能会引发BUG</p>
+<p>3.3常见方案三：Snowflake<br>理论上单机每秒400W+<br>最多每秒可以生成41亿+的ID<br>核心算法：<br>(timestamp &lt;&lt; 22) | (datacenterId &lt;&lt; 17) | (workerId &lt;&lt; 12) | sequence<br>Snowflake缺点<br>依赖时间，如果服务器时间被回拨，可能生成重复ID<br>Snowflake-Twitter是如何解决时间回拨的？</p>
+<p>如果在服务器宕机的情况下发生了时间回拨怎么办？</p>
+<p>3.4 综合方案：SnowflakeX<br>目标：不论在什么情况下发生时间回拨<br>都不会生成重复的ID</p>
+<p>宗旨：宁可不工作<br>我也不出错</p>
+<p><strong>四、方案对比</strong></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/12/01/id-generator/" data-id="cjanhf9xx0000qsmx4t0effwg" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/12/01/id-generator/" data-id="cjanhjwex0001pwmxqtcfrd1k" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/分布式Id/">分布式Id</a></li></ul>
@@ -158,7 +164,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/11/28/snowflake/" data-id="cjanhf9y20001qsmxk3ijlsy2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/11/28/snowflake/" data-id="cjanhjwfc0006pwmxj5grv51a" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/分布式Id/">分布式Id</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/高可用/">高可用</a></li></ul>
@@ -205,7 +211,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/11/14/hello-world/" data-id="cjanhf9y90004qsmxuqh84z7s" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/11/14/hello-world/" data-id="cjanhjwes0000pwmxovi9rygh" class="article-share-link">Share</a>
       
       
     </footer>
