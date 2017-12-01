@@ -3,19 +3,22 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Hello World | 起今知行 | 思考者</title>
+  <title>分布式ID生成器解决方案 | 起今知行 | 思考者</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="一、ID生成器的应用场景  数据库水平拆分时，主键需要作为业务标识使用 业务Id需要暴露给用户，但又不能被用户猜到所有编号 业务编号需要体现业务信息，比如订单分类等  本文将以“数据库水平拆分且主键需要作为外键使用” 为主要应用场景，来设计ID生成器二、设计目标三、解决方案3.1 常见方案一：UUIDUUID 是 通用唯一识别码（Universally Unique Identifier）的缩写，">
+<meta name="keywords" content="分布式Id">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2017/11/14/hello-world/index.html">
+<meta property="og:title" content="分布式ID生成器解决方案">
+<meta property="og:url" content="http://yoursite.com/2017/12/01/id-generator/index.html">
 <meta property="og:site_name" content="起今知行 | 思考者">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="一、ID生成器的应用场景  数据库水平拆分时，主键需要作为业务标识使用 业务Id需要暴露给用户，但又不能被用户猜到所有编号 业务编号需要体现业务信息，比如订单分类等  本文将以“数据库水平拆分且主键需要作为外键使用” 为主要应用场景，来设计ID生成器二、设计目标三、解决方案3.1 常见方案一：UUIDUUID 是 通用唯一识别码（Universally Unique Identifier）的缩写，">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-11-14T07:26:47.184Z">
+<meta property="og:image" content="http://yoursite.com/2017/12/01/id-generator/index.html">
+<meta property="og:updated_time" content="2017-12-01T05:31:06.315Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="分布式ID生成器解决方案">
+<meta name="twitter:description" content="一、ID生成器的应用场景  数据库水平拆分时，主键需要作为业务标识使用 业务Id需要暴露给用户，但又不能被用户猜到所有编号 业务编号需要体现业务信息，比如订单分类等  本文将以“数据库水平拆分且主键需要作为外键使用” 为主要应用场景，来设计ID生成器二、设计目标三、解决方案3.1 常见方案一：UUIDUUID 是 通用唯一识别码（Universally Unique Identifier）的缩写，">
+<meta name="twitter:image" content="http://yoursite.com/2017/12/01/id-generator/index.html">
   
     <link rel="alternate" href="/atom.xml" title="起今知行 | 思考者" type="application/atom+xml">
   
@@ -68,12 +71,16 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-id-generator" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/11/14/hello-world/" class="article-date">
-  <time datetime="2017-11-14T07:26:47.184Z" itemprop="datePublished">2017-11-14</time>
+    <a href="/2017/12/01/id-generator/" class="article-date">
+  <time datetime="2017-12-01T05:19:25.659Z" itemprop="datePublished">2017-12-01</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/解决方案/">解决方案</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -82,7 +89,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Hello World
+      分布式ID生成器解决方案
     </h1>
   
 
@@ -90,37 +97,37 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <p><strong>一、ID生成器的应用场景</strong></p>
+<ol>
+<li>数据库水平拆分时，主键需要作为业务标识使用</li>
+<li>业务Id需要暴露给用户，但又不能被用户猜到所有编号</li>
+<li>业务编号需要体现业务信息，比如订单分类等</li>
+</ol>
+<p>本文将以“数据库水平拆分且主键需要作为外键使用” 为主要应用场景，来设计ID生成器<br>二、设计目标<br><img src="http://" alt=""><br>三、解决方案<br>3.1 常见方案一：UUID<br>UUID 是 通用唯一识别码（Universally Unique Identifier）的缩写，是一种软件建构的标准，亦为开放软件基金会组织在分布式计算环境领域的一部分</p>
+<p>UUID是由一组32位数的16进制数字所构成，是故UUID理论上的总数为1632=2128，约等于3.4 x 1038。也就是说若每纳秒产生1兆个UUID，要花100亿年才会将所有UUID用完。</p>
+<p>UUID的标准型式包含32个16进制数字，以连字号分为五段，形式为8-4-4-4-12的32个字符。示例：<br>550e8400-e29b-41d4-a716-446655440000</p>
+<p>每秒产生10亿笔UUID<br>100年后只产生一次重复的机率是50%</p>
+<p>方案优点：<br>本地生成，没有网络消耗<br>可以任意水平扩展<br>生成效率高<br>生成节点不限<br>方案缺点：<br>128bit，占用空间大<br>无法做到趋势递增<br>索引效率差<br>3.2常见方案二：数据库自增列</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/11/14/hello-world/" data-id="cjanhf9y90004qsmxuqh84z7s" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/12/01/id-generator/" data-id="cjanhf9xx0000qsmx4t0effwg" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/分布式Id/">分布式Id</a></li></ul>
+
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
-    <a href="/2017/11/28/snowflake/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          优秀分布式ID生成器(Twitter-Snowflake）算法详解与JAVA实现
-        
-      </div>
-    </a>
   
+    <a href="/2017/11/28/snowflake/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">优秀分布式ID生成器(Twitter-Snowflake）算法详解与JAVA实现</div>
+    </a>
   
 </nav>
 

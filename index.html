@@ -69,6 +69,59 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-id-generator" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/12/01/id-generator/" class="article-date">
+  <time datetime="2017-12-01T05:19:25.659Z" itemprop="datePublished">2017-12-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/解决方案/">解决方案</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/01/id-generator/">分布式ID生成器解决方案</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>一、ID生成器的应用场景</strong></p>
+<ol>
+<li>数据库水平拆分时，主键需要作为业务标识使用</li>
+<li>业务Id需要暴露给用户，但又不能被用户猜到所有编号</li>
+<li>业务编号需要体现业务信息，比如订单分类等</li>
+</ol>
+<p>本文将以“数据库水平拆分且主键需要作为外键使用” 为主要应用场景，来设计ID生成器<br>二、设计目标<br><img src="http://" alt=""><br>三、解决方案<br>3.1 常见方案一：UUID<br>UUID 是 通用唯一识别码（Universally Unique Identifier）的缩写，是一种软件建构的标准，亦为开放软件基金会组织在分布式计算环境领域的一部分</p>
+<p>UUID是由一组32位数的16进制数字所构成，是故UUID理论上的总数为1632=2128，约等于3.4 x 1038。也就是说若每纳秒产生1兆个UUID，要花100亿年才会将所有UUID用完。</p>
+<p>UUID的标准型式包含32个16进制数字，以连字号分为五段，形式为8-4-4-4-12的32个字符。示例：<br>550e8400-e29b-41d4-a716-446655440000</p>
+<p>每秒产生10亿笔UUID<br>100年后只产生一次重复的机率是50%</p>
+<p>方案优点：<br>本地生成，没有网络消耗<br>可以任意水平扩展<br>生成效率高<br>生成节点不限<br>方案缺点：<br>128bit，占用空间大<br>无法做到趋势递增<br>索引效率差<br>3.2常见方案二：数据库自增列</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/12/01/id-generator/" data-id="cjanhf9xx0000qsmx4t0effwg" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/分布式Id/">分布式Id</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-snowflake" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/11/28/snowflake/" class="article-date">
@@ -105,7 +158,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/11/28/snowflake/" data-id="cjakymtr400019cmxigkw61qd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/11/28/snowflake/" data-id="cjanhf9y20001qsmxk3ijlsy2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/分布式Id/">分布式Id</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/高可用/">高可用</a></li></ul>
@@ -152,7 +205,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/11/14/hello-world/" data-id="cjakymtr000009cmx7tjccjkr" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/11/14/hello-world/" data-id="cjanhf9y90004qsmxuqh84z7s" class="article-share-link">Share</a>
       
       
     </footer>
@@ -171,7 +224,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/解决方案/">解决方案</a></li></ul>
     </div>
   </div>
 
@@ -191,7 +244,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/分布式Id/" style="font-size: 10px;">分布式Id</a> <a href="/tags/高可用/" style="font-size: 10px;">高可用</a>
+      <a href="/tags/分布式Id/" style="font-size: 20px;">分布式Id</a> <a href="/tags/高可用/" style="font-size: 10px;">高可用</a>
     </div>
   </div>
 
@@ -200,7 +253,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li></ul>
     </div>
   </div>
 
@@ -211,6 +264,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/12/01/id-generator/">分布式ID生成器解决方案</a>
+          </li>
         
           <li>
             <a href="/2017/11/28/snowflake/">优秀分布式ID生成器(Twitter-Snowflake）算法详解与JAVA实现</a>
