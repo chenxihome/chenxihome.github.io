@@ -5,20 +5,29 @@
   
   <title>分布式ID生成器解决方案 | 起今知行 | 思考者</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、ID生成器的应用场景  数据库水平拆分时，主键需要作为业务标识使用 业务Id需要暴露给用户，但又不能被用户猜到所有编号 业务编号需要体现业务信息，比如订单分类等  本文将以“数据库水平拆分且主键需要作为外键使用” 为主要应用场景，来设计ID生成器二、设计目标三、解决方案3.1 常见方案一：UUIDUUID 是 通用唯一识别码（Universally Unique Identifier）的缩写，">
+  <meta name="description" content="一、ID生成器的应用场景  数据库水平拆分时，主键需要作为业务标识使用 业务Id需要暴露给用户，但又不能被用户猜到所有编号 业务编号需要体现业务信息，比如订单分类等  本文将以“数据库水平拆分且主键需要作为外键使用” 为主要应用场景，来设计ID生成器二、设计目标三、解决方案 3.1 常见方案一：UUID==UUID 是 通用唯一识别码（Universally Unique Identifier）的">
 <meta name="keywords" content="分布式Id">
 <meta property="og:type" content="article">
 <meta property="og:title" content="分布式ID生成器解决方案">
 <meta property="og:url" content="http://yoursite.com/2017/12/01/id-generator/index.html">
 <meta property="og:site_name" content="起今知行 | 思考者">
-<meta property="og:description" content="一、ID生成器的应用场景  数据库水平拆分时，主键需要作为业务标识使用 业务Id需要暴露给用户，但又不能被用户猜到所有编号 业务编号需要体现业务信息，比如订单分类等  本文将以“数据库水平拆分且主键需要作为外键使用” 为主要应用场景，来设计ID生成器二、设计目标三、解决方案3.1 常见方案一：UUIDUUID 是 通用唯一识别码（Universally Unique Identifier）的缩写，">
+<meta property="og:description" content="一、ID生成器的应用场景  数据库水平拆分时，主键需要作为业务标识使用 业务Id需要暴露给用户，但又不能被用户猜到所有编号 业务编号需要体现业务信息，比如订单分类等  本文将以“数据库水平拆分且主键需要作为外键使用” 为主要应用场景，来设计ID生成器二、设计目标三、解决方案 3.1 常见方案一：UUID==UUID 是 通用唯一识别码（Universally Unique Identifier）的">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://github.com/chenxihome/chenxihome.github.io/raw/master/img/snowflake-64bit.jpg">
-<meta property="og:updated_time" content="2017-12-01T05:43:50.157Z">
+<meta property="og:image" content="https://github.com/chenxihome/chenxihome.github.io/raw/master/img/20171201132745.png">
+<meta property="og:image" content="https://github.com/chenxihome/chenxihome.github.io/raw/master/img/20171201133126.png">
+<meta property="og:image" content="https://github.com/chenxihome/chenxihome.github.io/raw/master/img/20171201133151.png">
+<meta property="og:image" content="https://github.com/chenxihome/chenxihome.github.io/raw/master/img/20171201133346.png">
+<meta property="og:image" content="https://github.com/chenxihome/chenxihome.github.io/raw/master/img/20171201133358.png">
+<meta property="og:image" content="https://github.com/chenxihome/chenxihome.github.io/raw/master/img/20171201133532.png">
+<meta property="og:image" content="https://github.com/chenxihome/chenxihome.github.io/raw/master/img/20171201133657.png">
+<meta property="og:image" content="https://github.com/chenxihome/chenxihome.github.io/raw/master/img/20171201133709.png">
+<meta property="og:image" content="https://github.com/chenxihome/chenxihome.github.io/raw/master/img/20171201133745.png">
+<meta property="og:image" content="https://github.com/chenxihome/chenxihome.github.io/raw/master/img/20171201133819.png">
+<meta property="og:updated_time" content="2017-12-01T06:01:25.138Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式ID生成器解决方案">
-<meta name="twitter:description" content="一、ID生成器的应用场景  数据库水平拆分时，主键需要作为业务标识使用 业务Id需要暴露给用户，但又不能被用户猜到所有编号 业务编号需要体现业务信息，比如订单分类等  本文将以“数据库水平拆分且主键需要作为外键使用” 为主要应用场景，来设计ID生成器二、设计目标三、解决方案3.1 常见方案一：UUIDUUID 是 通用唯一识别码（Universally Unique Identifier）的缩写，">
-<meta name="twitter:image" content="https://github.com/chenxihome/chenxihome.github.io/raw/master/img/snowflake-64bit.jpg">
+<meta name="twitter:description" content="一、ID生成器的应用场景  数据库水平拆分时，主键需要作为业务标识使用 业务Id需要暴露给用户，但又不能被用户猜到所有编号 业务编号需要体现业务信息，比如订单分类等  本文将以“数据库水平拆分且主键需要作为外键使用” 为主要应用场景，来设计ID生成器二、设计目标三、解决方案 3.1 常见方案一：UUID==UUID 是 通用唯一识别码（Universally Unique Identifier）的">
+<meta name="twitter:image" content="https://github.com/chenxihome/chenxihome.github.io/raw/master/img/20171201132745.png">
   
     <link rel="alternate" href="/atom.xml" title="起今知行 | 思考者" type="application/atom+xml">
   
@@ -103,22 +112,56 @@
 <li>业务Id需要暴露给用户，但又不能被用户猜到所有编号</li>
 <li>业务编号需要体现业务信息，比如订单分类等</li>
 </ol>
-<p>本文将以“数据库水平拆分且主键需要作为外键使用” 为主要应用场景，来设计ID生成器<br><strong>二、设计目标</strong><br><img src="https://github.com/chenxihome/chenxihome.github.io/raw/master/img/snowflake-64bit.jpg" alt=""><br><strong>三、解决方案</strong><br>3.1 常见方案一：UUID<br>UUID 是 通用唯一识别码（Universally Unique Identifier）的缩写，是一种软件建构的标准，亦为开放软件基金会组织在分布式计算环境领域的一部分</p>
-<p>UUID是由一组32位数的16进制数字所构成，是故UUID理论上的总数为1632=2128，约等于3.4 x 1038。也就是说若每纳秒产生1兆个UUID，要花100亿年才会将所有UUID用完。</p>
-<p>UUID的标准型式包含32个16进制数字，以连字号分为五段，形式为8-4-4-4-12的32个字符。示例：<br>550e8400-e29b-41d4-a716-446655440000</p>
-<p>每秒产生10亿笔UUID<br>100年后只产生一次重复的机率是50%</p>
-<p>方案优点：<br>本地生成，没有网络消耗<br>可以任意水平扩展<br>生成效率高<br>生成节点不限<br>方案缺点：<br>128bit，占用空间大<br>无法做到趋势递增<br>索引效率差<br>3.2常见方案二：数据库自增列</p>
-<p>方案优点：<br>可以实现ID完全递增（almost）<br>部署简单，有DB就可以<br>方案缺点：<br>生成效率差，取决于数据库性能指标<br>依赖于数据库，如果DB发生故障，在做主从切换的时候可能会引发BUG</p>
-<p>3.3常见方案三：Snowflake<br>理论上单机每秒400W+<br>最多每秒可以生成41亿+的ID<br>核心算法：<br>(timestamp &lt;&lt; 22) | (datacenterId &lt;&lt; 17) | (workerId &lt;&lt; 12) | sequence<br>Snowflake缺点<br>依赖时间，如果服务器时间被回拨，可能生成重复ID<br>Snowflake-Twitter是如何解决时间回拨的？</p>
-<p>如果在服务器宕机的情况下发生了时间回拨怎么办？</p>
-<p>3.4 综合方案：SnowflakeX<br>目标：不论在什么情况下发生时间回拨<br>都不会生成重复的ID</p>
-<p>宗旨：宁可不工作<br>我也不出错</p>
-<p><strong>四、方案对比</strong></p>
+<p>本文将以“数据库水平拆分且主键需要作为外键使用” 为主要应用场景，来设计ID生成器<br><strong>二、设计目标</strong><br><img src="https://github.com/chenxihome/chenxihome.github.io/raw/master/img/20171201132745.png" alt=""><br><strong>三、解决方案</strong></p>
+<h6 id="3-1-常见方案一：UUID"><a href="#3-1-常见方案一：UUID" class="headerlink" title="3.1 常见方案一：UUID"></a>3.1 常见方案一：UUID</h6><p>==UUID 是 通用唯一识别码（Universally Unique Identifier）的缩写，是一种软件建构的标准，亦为开放软件基金会组织在分布式计算环境领域的一部分==</p>
+<p>==UUID是由一组32位数的16进制数字所构成，是故UUID理论上的总数为1632=2128，约等于3.4 x 1038。也就是说若每纳秒产生1兆个UUID，要花100亿年才会将所有UUID用完。==</p>
+<p>==UUID的标准型式包含32个16进制数字，以连字号分为五段，形式为8-4-4-4-12的32个字符。示例：<br>550e8400-e29b-41d4-a716-446655440000==</p>
+<p>==每秒产生10亿笔UUID100年后只产生一次重复的机率是50%==</p>
+<p>方案优点：</p>
+<ol>
+<li>本地生成，没有网络消耗</li>
+<li>可以任意水平扩展</li>
+<li>生成效率高</li>
+<li>生成节点不限</li>
+</ol>
+<p>方案缺点：</p>
+<ol>
+<li>128bit，占用空间大</li>
+<li>无法做到趋势递增</li>
+<li>索引效率差</li>
+</ol>
+<h6 id="3-2常见方案二：数据库自增列"><a href="#3-2常见方案二：数据库自增列" class="headerlink" title="3.2常见方案二：数据库自增列"></a>3.2常见方案二：数据库自增列</h6><p>如：<br><img src="https://github.com/chenxihome/chenxihome.github.io/raw/master/img/20171201133126.png" alt=""><br>实现方式</p>
+<p><img src="https://github.com/chenxihome/chenxihome.github.io/raw/master/img/20171201133151.png" alt=""></p>
+<p>方案优点：</p>
+<ol>
+<li>可以实现ID完全递增（almost）</li>
+<li>部署简单，有DB就可以</li>
+</ol>
+<p>方案缺点：</p>
+<ol>
+<li>生成效率差，取决于数据库性能指标</li>
+<li>依赖于数据库，如果DB发生故障，在做主从切换的时候可能会引发BUG</li>
+</ol>
+<h6 id="3-3常见方案三：Snowflake"><a href="#3-3常见方案三：Snowflake" class="headerlink" title="3.3常见方案三：Snowflake"></a>3.3常见方案三：Snowflake</h6><p><img src="https://github.com/chenxihome/chenxihome.github.io/raw/master/img/20171201133346.png" alt=""><br>方案说明</p>
+<p><img src="https://github.com/chenxihome/chenxihome.github.io/raw/master/img/20171201133358.png" alt=""></p>
+<p>理论上单机每秒400W+最多每秒可以生成41亿+的ID</p>
+<h2 id="核心算法："><a href="#核心算法：" class="headerlink" title="核心算法："></a>核心算法：</h2><h2 id="timestamp-lt-lt-22-datacenterId-lt-lt-17-workerId-lt-lt-12-sequence"><a href="#timestamp-lt-lt-22-datacenterId-lt-lt-17-workerId-lt-lt-12-sequence" class="headerlink" title="(timestamp &lt;&lt; 22) | (datacenterId &lt;&lt; 17) | (workerId &lt;&lt; 12) | sequence"></a>(timestamp &lt;&lt; 22) | (datacenterId &lt;&lt; 17) | (workerId &lt;&lt; 12) | sequence</h2><p>Snowflake缺点</p>
+<ol>
+<li>依赖时间，如果服务器时间被回拨，可能生成重复ID</li>
+</ol>
+<h3 id="Snowflake-Twitter是如何解决时间回拨的？"><a href="#Snowflake-Twitter是如何解决时间回拨的？" class="headerlink" title="==Snowflake-Twitter是如何解决时间回拨的？=="></a>==Snowflake-Twitter是如何解决时间回拨的？==</h3><p><img src="https://github.com/chenxihome/chenxihome.github.io/raw/master/img/20171201133532.png" alt=""></p>
+<h3 id="如果在服务器宕机的情况下发生了时间回拨怎么办？？？？？？？？"><a href="#如果在服务器宕机的情况下发生了时间回拨怎么办？？？？？？？？" class="headerlink" title="==如果在服务器宕机的情况下发生了时间回拨怎么办？？？？？？？？=="></a>==如果在服务器宕机的情况下发生了时间回拨怎么办？？？？？？？？==</h3><p><strong>3.4 综合方案：SnowflakeX</strong></p>
+<p><strong>目标：不论在什么情况下发生时间回拨都不会生成重复的ID</strong></p>
+<p>安全时间打点<br><img src="https://github.com/chenxihome/chenxihome.github.io/raw/master/img/20171201133657.png" alt=""></p>
+<p>应用程序安全启动<br><img src="https://github.com/chenxihome/chenxihome.github.io/raw/master/img/20171201133709.png" alt=""></p>
+<p>ID生成时时间校验</p>
+<p><img src="https://github.com/chenxihome/chenxihome.github.io/raw/master/img/20171201133745.png" alt=""></p>
+<h2 id="宗旨：宁可不工作我也不出错"><a href="#宗旨：宁可不工作我也不出错" class="headerlink" title="宗旨：宁可不工作我也不出错"></a>宗旨：宁可不工作我也不出错</h2><p><strong>四、方案对比</strong><br><img src="https://github.com/chenxihome/chenxihome.github.io/raw/master/img/20171201133819.png" alt=""></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/12/01/id-generator/" data-id="cjanhjwex0001pwmxqtcfrd1k" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/12/01/id-generator/" data-id="cjani4zpi0008pomx57eu72jc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/分布式Id/">分布式Id</a></li></ul>
