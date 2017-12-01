@@ -23,7 +23,7 @@
 <meta property="og:image" content="https://github.com/chenxihome/chenxihome.github.io/raw/master/img/20171201140357.png">
 <meta property="og:image" content="https://github.com/chenxihome/chenxihome.github.io/raw/master/img/20171201133745.png">
 <meta property="og:image" content="https://github.com/chenxihome/chenxihome.github.io/raw/master/img/20171201133819.png">
-<meta property="og:updated_time" content="2017-12-01T06:07:53.553Z">
+<meta property="og:updated_time" content="2017-12-01T06:10:11.059Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式ID生成器解决方案">
 <meta name="twitter:description" content="一、ID生成器的应用场景  数据库水平拆分时，主键需要作为业务标识使用 业务Id需要暴露给用户，但又不能被用户猜到所有编号 业务编号需要体现业务信息，比如订单分类等  本文将以“数据库水平拆分且主键需要作为外键使用” 为主要应用场景，来设计ID生成器二、设计目标三、解决方案 3.1 常见方案一：UUID==UUID 是 通用唯一识别码（Universally Unique Identifier）的">
@@ -157,12 +157,11 @@
 <p>ID生成时时间校验</p>
 <p><img src="https://github.com/chenxihome/chenxihome.github.io/raw/master/img/20171201133745.png" alt=""></p>
 <h2 id="宗旨：宁可不工作我也不出错"><a href="#宗旨：宁可不工作我也不出错" class="headerlink" title="宗旨：宁可不工作我也不出错"></a>宗旨：宁可不工作我也不出错</h2><p><strong>四、方案对比</strong><br><img src="https://github.com/chenxihome/chenxihome.github.io/raw/master/img/20171201133819.png" alt=""></p>
-<h2 id="实际解决方案：可采取预生成方案，利用SnowflakeX算法提前产生一批ID，存入缓存中，可有效解决适中回拨，生成不了Id的困扰。"><a href="#实际解决方案：可采取预生成方案，利用SnowflakeX算法提前产生一批ID，存入缓存中，可有效解决适中回拨，生成不了Id的困扰。" class="headerlink" title="实际解决方案：可采取预生成方案，利用SnowflakeX算法提前产生一批ID，存入缓存中，可有效解决适中回拨，生成不了Id的困扰。"></a>实际解决方案：可采取预生成方案，利用SnowflakeX算法提前产生一批ID，存入缓存中，可有效解决适中回拨，生成不了Id的困扰。</h2><p>Snowflake算法java实现方式可见<a href="http://" target="_blank" rel="external">https://chenxihome.github.io/2017/11/28/snowflake/</a></p>
-
+<h2 id="实际解决方案：可采取预生成方案，利用SnowflakeX算法提前产生一批ID，存入缓存中，可有效解决时钟回拨，服务器宕机等故障，生成不了Id的困扰。"><a href="#实际解决方案：可采取预生成方案，利用SnowflakeX算法提前产生一批ID，存入缓存中，可有效解决时钟回拨，服务器宕机等故障，生成不了Id的困扰。" class="headerlink" title="实际解决方案：可采取预生成方案，利用SnowflakeX算法提前产生一批ID，存入缓存中，可有效解决时钟回拨，服务器宕机等故障，生成不了Id的困扰。"></a>实际解决方案：可采取预生成方案，利用SnowflakeX算法提前产生一批ID，存入缓存中，可有效解决时钟回拨，服务器宕机等故障，生成不了Id的困扰。</h2><h2 id="Snowflake算法java实现方式可参见https-chenxihome-github-io-2017-11-28-snowflake"><a href="#Snowflake算法java实现方式可参见https-chenxihome-github-io-2017-11-28-snowflake" class="headerlink" title="Snowflake算法java实现方式可参见https://chenxihome.github.io/2017/11/28/snowflake/"></a>Snowflake算法java实现方式可参见<a href="http://" target="_blank" rel="external">https://chenxihome.github.io/2017/11/28/snowflake/</a></h2>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/12/01/id-generator/" data-id="cjanicwtd00008omx3vq9uocw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/12/01/id-generator/" data-id="cjanifgph0002ukmx6uyi3mnf" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/分布式Id/">分布式Id</a></li></ul>
