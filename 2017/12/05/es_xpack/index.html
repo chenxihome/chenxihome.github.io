@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>elasticsearch学习笔记1--手动安装x-pack | 起今知行 | 思考者</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在搭建elasticsearch集群时会发现某一节点始终注册不到集群中，打开kibana启动log，看到error告警：”有两台节点未安装x-pack导致“。 现打算重新安装x-pack来解决问题,由于服务器不能连接外网，故选择手动安装x-pack如何你在线安装有问题的话，可以选择离线安装；方法就是先下载x-pack包,可以选择elasticsearch对应的版本官网教程：https://www.">
+<meta name="keywords" content="elasticsearch">
+<meta property="og:type" content="article">
+<meta property="og:title" content="elasticsearch学习笔记1--手动安装x-pack">
+<meta property="og:url" content="http://yoursite.com/2017/12/05/es_xpack/index.html">
+<meta property="og:site_name" content="起今知行 | 思考者">
+<meta property="og:description" content="在搭建elasticsearch集群时会发现某一节点始终注册不到集群中，打开kibana启动log，看到error告警：”有两台节点未安装x-pack导致“。 现打算重新安装x-pack来解决问题,由于服务器不能连接外网，故选择手动安装x-pack如何你在线安装有问题的话，可以选择离线安装；方法就是先下载x-pack包,可以选择elasticsearch对应的版本官网教程：https://www.">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://github.com/chenxihome/chenxihome.github.io/raw/master/img/20171205112653.jpg">
+<meta property="og:image" content="https://github.com/chenxihome/chenxihome.github.io/raw/master/img/20171205112752.jpg">
+<meta property="og:updated_time" content="2017-12-05T03:30:28.325Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="elasticsearch学习笔记1--手动安装x-pack">
+<meta name="twitter:description" content="在搭建elasticsearch集群时会发现某一节点始终注册不到集群中，打开kibana启动log，看到error告警：”有两台节点未安装x-pack导致“。 现打算重新安装x-pack来解决问题,由于服务器不能连接外网，故选择手动安装x-pack如何你在线安装有问题的话，可以选择离线安装；方法就是先下载x-pack包,可以选择elasticsearch对应的版本官网教程：https://www.">
+<meta name="twitter:image" content="https://github.com/chenxihome/chenxihome.github.io/raw/master/img/20171205112653.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="起今知行 | 思考者" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">起今知行 | 思考者</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">知识笔记 技术分享</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-es_xpack" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/12/05/es_xpack/" class="article-date">
+  <time datetime="2017-12-05T03:30:28.275Z" itemprop="datePublished">2017-12-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/elasticsearch学习笔记/">elasticsearch学习笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      elasticsearch学习笔记1--手动安装x-pack
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在搭建elasticsearch集群时会发现某一节点始终注册不到集群中，打开kibana启动log，看到error告警：”有两台节点未安装x-pack导致“。</p>
+<p>现打算重新安装x-pack来解决问题,由于服务器不能连接外网，故选择手动安装x-pack<br>如何你在线安装有问题的话，可以选择离线安装；方法就是先下载x-pack包,可以选择elasticsearch对应的版本<br>官网教程：<a href="https://www.elastic.co/guide/en/x-pack/current/installing-xpack.html#xpack-installing-offline" target="_blank" rel="external">https://www.elastic.co/guide/en/x-pack/current/installing-xpack.html#xpack-installing-offline</a><br>包地址：Manually download the X-Pack zip file: <a href="https://artifacts.elastic.co/downloads/packs/x-pack/x-pack-5.4.3.zip" target="_blank" rel="external">https://artifacts.elastic.co/downloads/packs/x-pack/x-pack-5.4.3.zip</a></p>
+<h5 id="安装es-x-pack插件"><a href="#安装es-x-pack插件" class="headerlink" title="安装es x-pack插件"></a>安装es x-pack插件</h5><p>==1.停掉es，如 /etc/init.d/elasticsearch stop<br>2.授权  chmod 777 /usr/share/x-pack-5.4.3_2.zip<br>其中 /usr/share/ 为x-pack 所在位置<br>3.切到es安装目录 如 cd  /usr/share/elasticsearch<br>执行安装命令<br>4.bin/elasticsearch-plugin install file:///usr/share/x-pack-5.4.3_2.zip<br>5.启动es==<br>按照同样的方案 按装其他节点的x-pack</p>
+<h5 id="同理安装kibana-x-pack插件"><a href="#同理安装kibana-x-pack插件" class="headerlink" title="同理安装kibana x-pack插件"></a>同理安装kibana x-pack插件</h5><p>再次访问kibana<br><a href="http://localhost:5601" target="_blank" rel="external">http://localhost:5601</a><br>会提示输入用户密码<br>如<br><img src="https://github.com/chenxihome/chenxihome.github.io/raw/master/img/20171205112653.jpg" alt=""><br>默认用户名/密码：elasitc/changeme，也可自己制定密码<br>进入后，可以看到集群和节点状态<br><img src="https://github.com/chenxihome/chenxihome.github.io/raw/master/img/20171205112752.jpg" alt=""><br>ok 搞定</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/12/05/es_xpack/" data-id="cjat2klub0000mgmx9vqn50sn" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/elasticsearch/">elasticsearch</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/12/01/id-generator/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">分布式ID生成器解决方案</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/elasticsearch学习笔记/">elasticsearch学习笔记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/解决方案/">解决方案</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/elasticsearch/">elasticsearch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式Id/">分布式Id</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式，高并发，高可用/">分布式，高并发，高可用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/高可用/">高可用</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/elasticsearch/" style="font-size: 10px;">elasticsearch</a> <a href="/tags/分布式Id/" style="font-size: 10px;">分布式Id</a> <a href="/tags/分布式，高并发，高可用/" style="font-size: 10px;">分布式，高并发，高可用</a> <a href="/tags/高可用/" style="font-size: 10px;">高可用</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/12/05/es_xpack/">elasticsearch学习笔记1--手动安装x-pack</a>
+          </li>
+        
+          <li>
+            <a href="/2017/12/01/id-generator/">分布式ID生成器解决方案</a>
+          </li>
+        
+          <li>
+            <a href="/2017/11/28/snowflake/">优秀分布式ID生成器(Twitter-Snowflake）算法详解与JAVA实现</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 chenxihome<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
