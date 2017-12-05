@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>起今知行 | 思考者</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="elasticsearch学习笔记二———client链接报错汇总 #####报错一、io.netty.buffer.CompositeByteBuf.addComponents(ZLjava/lang/Iterable;)Lio/netty/buffer/CompositeByteBuf;在使用elasticsearch5.x版本进行开发时，在引入响应jar依赖时， 12345678910111">
+<meta property="og:type" content="article">
+<meta property="og:title" content="起今知行 | 思考者">
+<meta property="og:url" content="http://yoursite.com/2017/12/05/esLinkError/index.html">
+<meta property="og:site_name" content="起今知行 | 思考者">
+<meta property="og:description" content="elasticsearch学习笔记二———client链接报错汇总 #####报错一、io.netty.buffer.CompositeByteBuf.addComponents(ZLjava/lang/Iterable;)Lio/netty/buffer/CompositeByteBuf;在使用elasticsearch5.x版本进行开发时，在引入响应jar依赖时， 12345678910111">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-12-05T06:42:54.666Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="起今知行 | 思考者">
+<meta name="twitter:description" content="elasticsearch学习笔记二———client链接报错汇总 #####报错一、io.netty.buffer.CompositeByteBuf.addComponents(ZLjava/lang/Iterable;)Lio/netty/buffer/CompositeByteBuf;在使用elasticsearch5.x版本进行开发时，在引入响应jar依赖时， 12345678910111">
+  
+    <link rel="alternate" href="/atom.xml" title="起今知行 | 思考者" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">起今知行 | 思考者</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">知识笔记 技术分享</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-esLinkError" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/12/05/esLinkError/" class="article-date">
+  <time datetime="2017-12-05T06:42:54.594Z" itemprop="datePublished">2017-12-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>elasticsearch学习笔记二———client链接报错汇总</p>
+<p>#####报错一、io.netty.buffer.CompositeByteBuf.addComponents(ZLjava/lang/Iterable;)Lio/netty/buffer/CompositeByteBuf;<br>在使用elasticsearch5.x版本进行开发时，在引入响应jar依赖时，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">           &lt;groupId&gt;org.elasticsearch.client&lt;/groupId&gt;</span><br><span class="line">           &lt;artifactId&gt;transport&lt;/artifactId&gt;</span><br><span class="line">           &lt;version&gt;5.4.1&lt;/version&gt;</span><br><span class="line">       &lt;/dependency&gt;</span><br><span class="line">       &lt;dependency&gt;</span><br><span class="line">           &lt;groupId&gt;org.elasticsearch&lt;/groupId&gt;</span><br><span class="line">           &lt;artifactId&gt;elasticsearch&lt;/artifactId&gt;</span><br><span class="line">           &lt;version&gt;5.4.1&lt;/version&gt;</span><br><span class="line">       &lt;/dependency&gt;</span><br><span class="line">       &lt;dependency&gt;</span><br><span class="line">           &lt;groupId&gt;org.apache.logging.log4j&lt;/groupId&gt;</span><br><span class="line">           &lt;artifactId&gt;log4j-api&lt;/artifactId&gt;</span><br><span class="line">           &lt;version&gt;2.8.2&lt;/version&gt;</span><br><span class="line">       &lt;/dependency&gt;</span><br><span class="line">       &lt;dependency&gt;</span><br><span class="line">           &lt;groupId&gt;org.apache.logging.log4j&lt;/groupId&gt;</span><br><span class="line">           &lt;artifactId&gt;log4j-core&lt;/artifactId&gt;</span><br><span class="line">           &lt;version&gt;2.8.2&lt;/version&gt;</span><br><span class="line">       &lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<p>创建es链接时出现了报错：<br><code>%xwExException in thread &quot;elasticsearch[_client_][management][T#1]&quot; java.lang.NoSuchMethodError: io.netty.buffer.CompositeByteBuf.addComponents(ZLjava/lang/Iterable;)Lio/netty/buffer/CompositeByteBuf;
+    at org.elasticsearch.transport.netty4.Netty4Utils.toByteBuf(Netty4Utils.java:117)
+    at org.elasticsearch.transport.netty4.Netty4Transport.sendMessage(Netty4Transport.java:412)
+    at org.elasticsearch.transport.netty4.Netty4Transport.sendMessage(Netty4Transport.java:94)
+    at org.elasticsearch.transport.TcpTransport.internalSendMessage(TcpTransport.java:1098)
+    at org.elasticsearch.transport.TcpTransport.sendRequestToChannel(TcpTransport.java:1080)
+    at org.elasticsearch.transport.TcpTransport.executeHandshake(TcpTransport.java:1595)
+    at org.elasticsearch.transport.TcpTransport.openConnection(TcpTransport.java:541)
+    at org.elasticsearch.transport.TcpTransport.openConnection(TcpTransport.java:116)
+    at org.elasticsearch.transport.TransportService.openConnection(TransportService.java:334)
+    at org.elasticsearch.client.transport.TransportClientNodesService$SniffNodesSampler$1.doRun(TransportClientNodesService.java:507)
+    at org.elasticsearch.common.util.concurrent.ThreadContext$ContextPreservingAbstractRunnable.doRun(ThreadContext.java:638)
+    at org.elasticsearch.common.util.concurrent.AbstractRunnable.run(AbstractRunnable.java:37)
+    at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+    at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+    at java.lang.Thread.run(Thread.java:748)
+2017/12/05 13:28:23 DEBUG org.eclipse.jetty.io.ManagedSelector - selected {} {}</code><br>初步排查下来，是netty问题，网上goolge一遍下来，发现可能是netty版本问题导致：<br>利用maven命令查看一下jar依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn dependency:tree</span><br></pre></td></tr></table></figure>
+<p>看到相应jar依赖树，重点netty jar引用是否冲突或是版本不同<br>具体操作可参照 <a href="http://blog.csdn.net/sun_wangdong/article/details/51852113" target="_blank" rel="external">http://blog.csdn.net/sun_wangdong/article/details/51852113</a><br>项目看下来，发现如下问题：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[INFO] +- com.xxx-dbtracing:jar:0.1.5.3:compile</span><br><span class="line">[INFO] |  +- c3p0:c3p0:jar:0.9.0.4:compile</span><br><span class="line">[INFO] |  \- com.dianping.cat:cat-client:jar:1.4.0:compile</span><br><span class="line">[INFO] |     +- io.netty:netty-all:jar:4.0.24.Final:compile</span><br><span class="line">[INFO] |     \- com.google.code.gson:gson:jar:2.8.0:compile</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[INFO] +- org.elasticsearch.client:transport:jar:5.4.1:compile</span><br><span class="line">[INFO] |  +- org.elasticsearch.plugin:transport-netty3-client:jar:5.4.1:compile</span><br><span class="line">[INFO] |  |  \- io.netty:netty:jar:3.10.6.Final:compile</span><br><span class="line">[INFO] |  +- org.elasticsearch.plugin:transport-netty4-client:jar:5.4.1:compile</span><br><span class="line">[INFO] |  |  +- io.netty:netty-buffer:jar:4.1.11.Final:compile</span><br><span class="line">[INFO] |  |  +- io.netty:netty-codec:jar:4.1.11.Final:compile</span><br><span class="line">[INFO] |  |  +- io.netty:netty-codec-http:jar:4.1.11.Final:compile</span><br><span class="line">[INFO] |  |  +- io.netty:netty-common:jar:4.1.11.Final:compile</span><br><span class="line">[INFO] |  |  +- io.netty:netty-handler:jar:4.1.11.Final:compile</span><br><span class="line">[INFO] |  |  +- io.netty:netty-resolver:jar:4.1.11.Final:compile</span><br><span class="line">[INFO] |  |  \- io.netty:netty-transport:jar:4.1.11.Final:compile</span><br></pre></td></tr></table></figure>
+<p>项目依赖中并未发现jar的冲突，但是发现netty版本不一致，出现了低于4.1版本netty，怀疑是版本问题，<br>故在 com.xxx-dbtracing依赖中，去掉了netty-all的依赖，统一引用高版本的netty<br>如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">           &lt;groupId&gt;com.xxx&lt;/groupId&gt;</span><br><span class="line">           &lt;artifactId&gt;xxx-dbtracing&lt;/artifactId&gt;</span><br><span class="line">           &lt;version&gt;0.1.5.3&lt;/version&gt;</span><br><span class="line">           &lt;exclusions&gt;</span><br><span class="line">               &lt;exclusion&gt;</span><br><span class="line">                   &lt;groupId&gt;org.mybatis&lt;/groupId&gt;</span><br><span class="line">                   &lt;artifactId&gt;mybatis&lt;/artifactId&gt;</span><br><span class="line">               &lt;/exclusion&gt;</span><br><span class="line">               &lt;exclusion&gt;</span><br><span class="line">                   &lt;groupId&gt;io.netty&lt;/groupId&gt;</span><br><span class="line">                   &lt;artifactId&gt;netty-all&lt;/artifactId&gt;</span><br><span class="line">               &lt;/exclusion&gt;</span><br><span class="line">           &lt;/exclusions&gt;</span><br><span class="line">       &lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<p>重新启动项目，访问es，问题得到解决！</p>
+<p>#####报错二、missing authentication token for action [cluster:monitor/state]<br>访问es报错如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Caused by: org.elasticsearch.ElasticsearchSecurityException: missing authentication token for action [cluster:monitor/state]</span><br><span class="line">	at org.elasticsearch.xpack.security.support.Exceptions.authenticationError(Exceptions.java:39) ~[x-pack-api-5.4.1.jar:5.4.1]</span><br><span class="line">	at org.elasticsearch.xpack.security.authc.DefaultAuthenticationFailureHandler.missingToken(DefaultAuthenticationFailureHandler.java:74) ~[x-pack-api-5.4.1.jar:5.4.1]</span><br><span class="line">	at org.elasticsearch.xpack.security.authc.AuthenticationService$AuditableTransportRequest.anonymousAccessDenied(AuthenticationService.java:514) ~[x-pack-api-5.4.1.jar:5.4.1]</span><br><span class="line">	at org.elasticsearch.xpack.security.authc.AuthenticationService$Authenticator.lambda$handleNullToken$14(AuthenticationService.java:332) ~[x-pack-api-5.4.1.jar:5.4.1]</span><br><span class="line">	at org.elasticsearch.xpack.security.authc.AuthenticationService$Authenticator.handleNullToken(AuthenticationService.java:337) ~[x-pack-api-5.4.1.jar:5.4.1]</span><br><span class="line">	at org.elasticsearch.xpack.security.authc.AuthenticationService$Authenticator.consumeToken(AuthenticationService.java:258) ~[x-pack-api-5.4.1.jar:5.4.1]</span><br><span class="line">	at org.elasticsearch.xpack.security.authc.AuthenticationService$Authenticator.lambda$extractToken$5(AuthenticationService.java:234) ~[x-pack-api-5.4.1.jar:5.4.1]</span><br><span class="line">	at org.elasticsearch.xpack.security.authc.AuthenticationService$Authenticator.extractToken(AuthenticationService.java:247) ~[x-pack-api-5.4.1.jar:5.4.1]</span><br><span class="line">	at org.elasticsearch.xpack.security.authc.AuthenticationService$Authenticator.lambda$authenticateAsync$0(AuthenticationService.java:194) ~[x-pack-api-5.4.1.jar:5.4.1]</span><br><span class="line">	at</span><br></pre></td></tr></table></figure>
+<p>上述报错缺少token验证，原因是服务端开启了用户验证，<br>项目里也要引入相关依赖，加上用户名密码<br>解决如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">           &lt;groupId&gt;org.elasticsearch.client&lt;/groupId&gt;</span><br><span class="line">           &lt;artifactId&gt;x-pack-transport&lt;/artifactId&gt;</span><br><span class="line">           &lt;version&gt;5.4.1&lt;/version&gt;</span><br><span class="line">       &lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<p>如果x-pack-transport下载不下来，可以加入，方便下载</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;repositories&gt;</span><br><span class="line">     &lt;!-- add the elasticsearch repo --&gt;</span><br><span class="line">     &lt;repository&gt;</span><br><span class="line">         &lt;id&gt;elasticsearch-releases&lt;/id&gt;</span><br><span class="line">         &lt;url&gt;https://artifacts.elastic.co/maven&lt;/url&gt;</span><br><span class="line">         &lt;releases&gt;</span><br><span class="line">             &lt;enabled&gt;true&lt;/enabled&gt;</span><br><span class="line">         &lt;/releases&gt;</span><br><span class="line">         &lt;snapshots&gt;</span><br><span class="line">             &lt;enabled&gt;false&lt;/enabled&gt;</span><br><span class="line">         &lt;/snapshots&gt;</span><br><span class="line">     &lt;/repository&gt;</span><br><span class="line"> &lt;/repositories&gt;</span><br></pre></td></tr></table></figure>
+<p>es setting配置中新增：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">.put(&quot;xpack.security.transport.ssl.enabled&quot;, false)</span><br><span class="line">.put(&quot;xpack.security.user&quot;,&quot;elastic:changeme&quot;)</span><br></pre></td></tr></table></figure>
+<p>重启项目，问题得到解决！</p>
+<p>#####报错三、java.lang.IllegalStateException: availableProcessors is already set to [4], rejecting [4]<br>es报错如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">java.lang.IllegalStateException: availableProcessors is already set to [4], rejecting [4]</span><br><span class="line">	at io.netty.util.NettyRuntime$AvailableProcessorsHolder.setAvailableProcessors(NettyRuntime.java:51)</span><br><span class="line">	at io.netty.util.NettyRuntime.setAvailableProcessors(NettyRuntime.java:87)</span><br><span class="line">	at org.elasticsearch.transport.netty4.Netty4Utils.setAvailableProcessors(Netty4Utils.java:82)</span><br><span class="line">	at org.elasticsearch.transport.netty4.Netty4Transport.&lt;init&gt;(Netty4Transport.java:138)</span><br><span class="line">	at org.elasticsearch.xpack.security.transport.netty4.SecurityNetty4Transport.&lt;init&gt;(SecurityNetty4Transport.java:65)</span><br><span class="line">	at org.elasticsearch.xpack.security.Security.lambda$getTransports$13(Security.java:779)</span><br><span class="line">	at org.elasticsearch.client.transport.TransportClient.buildTemplate(TransportClient.java:176)</span><br><span class="line">	at org.elasticsearch.client.transport.TransportClient.&lt;init&gt;(TransportClient.java:268)</span><br><span class="line">	at org.elasticsearch.transport.client.PreBuiltTransportClient.&lt;init&gt;(PreBuiltTransportClient.java:127)</span><br><span class="line">	at org.elasticsearch.xpack.client.PreBuiltXPackTransportClient.&lt;init&gt;(PreBuiltXPackTransportClient.java:55)</span><br><span class="line">	at org.elasticsearch.xpack.client.PreBuiltXPackTransportClient.&lt;init&gt;(PreBuiltXPackTransportClient.java:50)</span><br><span class="line">	at org.elasticsearch.xpack.client.PreBuiltXPackTransportClient.&lt;init&gt;(PreBuiltXPackTransportClient.java:46)</span><br></pre></td></tr></table></figure>
+<p>这个报错很奇怪，首次访问会报这个错，再次访问es，就ok了，很奇怪，<br>网上goolge一下 ，只有一条解决方案：<br><a href="https://discuss.elastic.co/t/elasticsearch-5-4-1-availableprocessors-is-already-set/88036" target="_blank" rel="external">https://discuss.elastic.co/t/elasticsearch-5-4-1-availableprocessors-is-already-set/88036</a><br>即 setting中加入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">System.setProperty(&quot;es.set.netty.runtime.available.processors&quot;, &quot;false&quot;);</span><br></pre></td></tr></table></figure>
+<p>重启项目，连接es，问题解决<br>先记录一下，后面研究一下</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/12/05/esLinkError/" data-id="cjat9d34s000098mxgil61szj" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/12/05/es_xpack/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">elasticsearch学习笔记1--手动安装x-pack</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/elasticsearch学习笔记/">elasticsearch学习笔记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/解决方案/">解决方案</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/elasticsearch/">elasticsearch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式Id/">分布式Id</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式，高并发，高可用/">分布式，高并发，高可用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/高可用/">高可用</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/elasticsearch/" style="font-size: 10px;">elasticsearch</a> <a href="/tags/分布式Id/" style="font-size: 10px;">分布式Id</a> <a href="/tags/分布式，高并发，高可用/" style="font-size: 10px;">分布式，高并发，高可用</a> <a href="/tags/高可用/" style="font-size: 10px;">高可用</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/12/05/esLinkError/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/12/05/es_xpack/">elasticsearch学习笔记1--手动安装x-pack</a>
+          </li>
+        
+          <li>
+            <a href="/2017/12/01/id-generator/">分布式ID生成器解决方案</a>
+          </li>
+        
+          <li>
+            <a href="/2017/11/28/snowflake/">优秀分布式ID生成器(Twitter-Snowflake）算法详解与JAVA实现</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 chenxihome<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
